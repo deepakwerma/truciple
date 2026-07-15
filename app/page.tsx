@@ -130,7 +130,7 @@ export default function Home() {
           onSidebarToggle={() => setSidebarOpen(!sidebarOpen)}
         />
 
-        {/* Fixed full-screen empty state — sits behind the top bar and composer, never scrolls */}
+        
         {!currentPrompt && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
             <EmptyState />
@@ -139,7 +139,7 @@ export default function Home() {
 
         <div className="flex-1 overflow-y-auto relative z-10">
           <div className="max-w-7xl mx-auto px-(--space-6) py-(--space-6) space-y-(--space-6) w-full">
-            {/* EmptyState is now rendered as a fixed overlay above, not here */}
+            
 
             {currentPrompt && (
               <div className="w-full flex justify-end select-none">
@@ -179,7 +179,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="shrink-0 bg-bg/75 backdrop-blur-md border-t border-border px-(--space-5) py-(--space-3) flex items-center min-h-[64px]">
+        <div className="shrink-0 bg-bg/75 backdrop-blur-md border-t border-border px-(--space-5) py-(--space-3) flex items-center min-h-16">
           <div className="max-w-7xl mx-auto w-full">
             <PromptComposer onSubmit={handleSubmit} disabled={loading} />
           </div>

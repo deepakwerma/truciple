@@ -8,6 +8,7 @@ import {
 } from "@clerk/nextjs";
 import { useState } from "react";
 import { X } from "lucide-react";
+import { clerkAppearance } from "@/lib/theme/clerk-appearance";
 
 export function AuthModal({
   open,
@@ -25,22 +26,22 @@ export function AuthModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="relative bg-[#0F1117] border border-white/10 rounded-xl p-6 max-w-md w-full mx-4">
+      <div className="relative bg-surface border border-border rounded-card p-6 max-w-md w-full mx-4">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white/50 hover:text-white"
+          className="absolute top-4 right-4 text-text-muted hover:text-text-primary"
         >
           <X size={18} />
         </button>
 
         {isSignedIn ? (
           <div className="flex flex-col items-center gap-4 py-6">
-            <UserButton />
-            <p className="text-sm text-white/70">
+            <UserButton appearance={clerkAppearance} />
+            <p className="text-sm text-text-muted">
               {user?.primaryEmailAddress?.emailAddress}
             </p>
             <SignOutButton>
-              <button className="text-xs px-4 py-2 rounded-full bg-white/10 hover:bg-white/15 text-white/80 transition-colors">
+              <button className="text-xs px-4 py-2 rounded-button bg-surface-hover hover:bg-surface-elevated text-text-primary transition-colors">
                 Sign out
               </button>
             </SignOutButton>
@@ -48,7 +49,7 @@ export function AuthModal({
         ) : (
           <>
             {reason === "limit" && (
-              <p className="text-sm text-white/70 mb-4 text-center">
+              <p className="text-sm text-text-muted mb-4 text-center">
                 You've used your free messages this week. Sign up for more.
               </p>
             )}
@@ -56,22 +57,30 @@ export function AuthModal({
             <div className="flex gap-2 mb-4 justify-center">
               <button
                 onClick={() => setMode("sign-in")}
-                className={`text-sm px-3 py-1 rounded-full ${mode === "sign-in" ? "bg-white text-black" : "text-white/50"}`}
+                className={`text-sm px-3 py-1 rounded-button ${
+                  mode === "sign-in"
+                    ? "bg-accent-signal text-text-inverse"
+                    : "text-text-muted"
+                }`}
               >
                 Sign in
               </button>
               <button
                 onClick={() => setMode("sign-up")}
-                className={`text-sm px-3 py-1 rounded-full ${mode === "sign-up" ? "bg-white text-black" : "text-white/50"}`}
+                className={`text-sm px-3 py-1 rounded-button ${
+                  mode === "sign-up"
+                    ? "bg-accent-signal text-text-inverse"
+                    : "text-text-muted"
+                }`}
               >
                 Sign up
               </button>
             </div>
 
             {mode === "sign-in" ? (
-              <SignIn routing="hash" />
+              <SignIn routing="hash" appearance={clerkAppearance} />
             ) : (
-              <SignUp routing="hash" />
+              <SignUp routing="hash" appearance={clerkAppearance} />
             )}
           </>
         )}

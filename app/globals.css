@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
+
 
 :root {
  
@@ -213,7 +213,7 @@ body {
   margin-bottom: 4px;
 }
 
-/* bold label at start of a list item — gives breathing room before the label */
+
 .markdown-body li>strong:first-child {
   display: inline-block;
   margin-bottom: 2px;
