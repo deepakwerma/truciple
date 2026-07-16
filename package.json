@@ -14,6 +14,7 @@
     "@clerk/themes": "^2.4.57",
     "@google/genai": "^2.11.0",
     "@neondatabase/serverless": "^1.1.0",
+    "@tabler/icons-react": "^3.44.0",
     "@tailwindcss/typography": "^0.5.20",
     "@vercel/analytics": "^2.0.1",
     "drizzle-orm": "^0.45.2",

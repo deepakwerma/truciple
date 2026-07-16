@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useUser } from "@clerk/nextjs";
 
 interface SidebarProps {
-  isOpen: boolean;
+  desktopOpen: boolean;
+  mobileOpen: boolean;
   onToggle: () => void;
   onNewChat: () => void;
   onSettingsClick: () => void;
@@ -15,7 +16,8 @@ interface SidebarProps {
 type Conversation = { id: string; title: string | null; createdAt: string };
 
 export function Sidebar({
-  isOpen,
+  desktopOpen,
+  mobileOpen,
   onToggle,
   onNewChat,
   onSettingsClick,
@@ -104,9 +106,8 @@ export function Sidebar({
 
   return (
     <>
-      {/* Mobile backdrop — sirf md se neeche render/paint hota hai */}
       <AnimatePresence>
-        {isOpen && (
+        {mobileOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -118,20 +119,18 @@ export function Sidebar({
         )}
       </AnimatePresence>
 
-      {/* Desktop: default OPEN, koi initial-close nahi */}
       <motion.div
-        animate={{ width: isOpen ? 256 : 0 }}
+        animate={{ width: desktopOpen ? 256 : 0 }}
         transition={{ duration: 0.2, ease: "easeInOut" }}
         className="hidden md:block h-full overflow-hidden bg-bg border-r border-border shrink-0"
-        style={{ borderRightWidth: isOpen ? 1 : 0 }}
+        style={{ borderRightWidth: desktopOpen ? 1 : 0 }}
       >
         {sidebarContent}
       </motion.div>
 
-      {/* Mobile: default CLOSED (initial={{x:-256}}), user ke toggle se hi khulta hai */}
       <motion.aside
         initial={{ x: -256 }}
-        animate={{ x: isOpen ? 0 : -256 }}
+        animate={{ x: mobileOpen ? 0 : -256 }}
         transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
         className="md:hidden fixed top-0 left-0 h-full bg-bg border-r border-border z-50"
       >
