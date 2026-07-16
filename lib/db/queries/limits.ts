@@ -2,8 +2,8 @@ import { db } from "@/lib/db/client";
 import { deviceUsage, ipUsage, apiUsage } from "@/lib/db/schema";
 import { eq, and, sql } from "drizzle-orm";
 
-const GUEST_LIMIT = 4;
-const USER_LIMIT = 10;
+const GUEST_LIMIT = 10;
+const USER_LIMIT = 25;
 const WINDOW_DAYS = 7;
 
 function withinWindow(lastUsedAt: Date | string | null): boolean {
